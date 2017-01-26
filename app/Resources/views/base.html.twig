@@ -7,6 +7,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <a href="{{ path('produit_index') }}">Produits</a>
+        <a href="{{ path('categorie_index') }}">Categorie</a>
+        <a href="{{ path('commande_index') }}">Commande</a>
+        <a href="{{ path('client_index') }}">Client</a>
+        <a href="{{ path('lister_produits') }}">Lister produits</a>
+        <br>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
