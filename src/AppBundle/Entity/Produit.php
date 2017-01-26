@@ -167,4 +167,84 @@ class Produit
     {
         return $this->stock;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commande
+     *
+     * @param \AppBundle\Entity\Commande $commande
+     *
+     * @return Produit
+     */
+    public function addCommande(\AppBundle\Entity\Commande $commande)
+    {
+        $this->commandes[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove commande
+     *
+     * @param \AppBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\AppBundle\Entity\Commande $commande)
+    {
+        $this->commandes->removeElement($commande);
+    }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \AppBundle\Entity\Categorie $category
+     *
+     * @return Produit
+     */
+    public function addCategory(\AppBundle\Entity\Categorie $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AppBundle\Entity\Categorie $category
+     */
+    public function removeCategory(\AppBundle\Entity\Categorie $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+    
+    public function __toString() {
+        return $this->titre;
+    }
 }

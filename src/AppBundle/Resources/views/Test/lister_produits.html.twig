@@ -1,0 +1,8 @@
+{% for prodAct in mesProduits %}
+    Produit actuel: {{ prodAct.titre }}
+    Prix: {{ prodAct.prix }}
+    {% for catAct in prodAct.categories %}
+        Catégorie: {{ catAct.titre }}
+    {% endfor %}
+    <br>
+{% endfor %}

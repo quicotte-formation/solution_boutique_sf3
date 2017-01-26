@@ -134,4 +134,8 @@ class Client
     {
         return $this->commandes;
     }
+    
+    public function __toString() {
+        return $this->login;
+    }
 }

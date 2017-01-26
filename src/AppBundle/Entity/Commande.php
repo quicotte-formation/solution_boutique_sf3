@@ -159,4 +159,49 @@ class Commande
     {
         return $this->client;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     *
+     * @return Commande
+     */
+    public function addProduit(\AppBundle\Entity\Produit $produit)
+    {
+        $this->produits[] = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Remove produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     */
+    public function removeProduit(\AppBundle\Entity\Produit $produit)
+    {
+        $this->produits->removeElement($produit);
+    }
+
+    /**
+     * Get produits
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProduits()
+    {
+        return $this->produits;
+    }
+    
+    public function __toString() {
+        return "Commande: " . $this->id;
+    }
 }
