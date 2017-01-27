@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% for res in resultats %}
+    {{ res.nbProd }} {{ res.produit.titre }}
+    <br>
+{% endfor %}
+
+
+
+
+{% endblock %}
