@@ -5,6 +5,9 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+        <script src="{{ asset("bundles/app/JS/jquery-3.1.1.js") }}" type="text/javascript"></script>
+        
     </head>
     <body>
         <a href="{{ path('produit_index') }}">Produits</a>
