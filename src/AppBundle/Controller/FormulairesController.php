@@ -8,6 +8,46 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class FormulairesController extends Controller
 {
+     /**
+     * Exemple avec un DTO et Objet Form externe (+entity)
+     * @Route("form_ex3")
+     */
+    public function formEx3Action(\Symfony\Component\HttpFoundation\Request $req){
+        
+        $dto = new \AppBundle\DTO\RechercheDTO();
+        $form = $this->createForm(\AppBundle\Form\RechercheType::class, $dto);
+        
+        $form->handleRequest( $req );
+        if( $form->isSubmitted() && $form->isValid() ){
+            
+            $dto = $form->getData();// Gets data from form
+
+            // Dynalically creates query from dto
+            $qb = new \Doctrine\ORM\QueryBuilder($this->getDoctrine()->getManager());
+            $qb->select("p");
+            $qb->from("AppBundle:Produit", "p");
+            $qb->orderBy("p.titre");
+            if( $dto->getClient()!=null ){
+                $qb->join("p.commandes", "cmd");
+                $qb->join("cmd.client", "cli");
+                $qb->andWhere("cli.id=:clientId");
+                $qb->setParameter("clientId", $dto->getClient()->getId());
+            }
+            
+            $produits = $qb->getQuery()->getResult();
+            
+            return $this->render(
+                "AppBundle:Formulaires:formEx3_POST.html.twig",
+                array("produits"=>$produits));
+        }
+        
+        // Form not submitted or invalid
+        
+        return $this->render(
+                "AppBundle:Formulaires:formEx3_GET.html.twig",
+                array("f"=>$form->createView() ));
+    }
+    
     /**
      * Exemple avec un DTO
      * @Route("form_ex2")
