@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Client
@@ -27,11 +28,13 @@ class Client
     private $commandes;
     
     /**
+     * @Assert\NotBlank(message="Login ne peut etre vide")
      * @ORM\Column(name="login", type="string", length=32, unique=true)
      */
     private $login;
     
     /**
+     * @Assert\Length(min=3, max=8)
      * @ORM\Column(name="mdp", type="string", length=8)
      */
     private $mdp;
