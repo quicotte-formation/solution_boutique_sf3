@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:SolutionFiltre:solutionFiltre{% endblock %}
+
+{% block body %}
+    <h1>Filtre</h1>
+    {{ form(monForm) }}
+    <h1>Produits trouvés</h1>
+    {% for prod in produits %}
+        {{ prod.titre }}
+        <br>
+    {% endfor %}
+{% endblock %}

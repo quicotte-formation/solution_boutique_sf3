@@ -1,0 +1,11 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <h1>Filtre</h1>
+    {{ form(monFormulaire) }}
+    <h1>Resultats</h1>
+    {% for prod in mesProduits %}
+        {{ prod.titre }}
+        <br>
+    {% endfor %}
+{% endblock %}
