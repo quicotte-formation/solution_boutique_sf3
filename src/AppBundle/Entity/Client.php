@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  */
-class Client
+class Client implements \Symfony\Component\Security\Core\User\UserInterface, \Serializable
 {
     /**
      * @var int
@@ -38,6 +38,11 @@ class Client
      * @ORM\Column(name="mdp", type="string", length=8)
      */
     private $mdp;
+    
+    /**
+     * @ORM\Column(name="role", type="string", length=16)
+     */
+    private $role;
 
     /**
      * Get id
@@ -104,6 +109,15 @@ class Client
         return $this->mdp;
     }
 
+    function getRole() {
+        return $this->role;
+    }
+
+    function setRole($role) {
+        $this->role = $role;
+    }
+
+        
     /**
      * Add commande
      *
@@ -141,4 +155,38 @@ class Client
     public function __toString() {
         return $this->login;
     }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getPassword(): string {
+        
+        return $this->mdp;
+    }
+
+    public function getRoles() {
+        
+        return array( $this->role );
+    }
+
+    public function getSalt() {
+        
+    }
+
+    public function getUsername(): string {
+        
+        return $this->login;
+    }
+
+    public function serialize(): string {
+        
+        return serialize( array($this->id, $this->login, $this->mdp, $this->role) );
+    }
+
+    public function unserialize($serialized) {
+        
+        list( $this->id, $this->login, $this->mdp ) = unserialize($serialized);
+    }
+
 }

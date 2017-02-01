@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.4.10
+-- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Jeu 26 Janvier 2017 à 15:10
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Client :  localhost:8889
+-- Généré le :  Mer 01 Février 2017 à 10:47
+-- Version du serveur :  5.5.42
+-- Version de PHP :  7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `boutique_sf3`
@@ -29,7 +23,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categorie` (
   `id` int(11) NOT NULL,
   `titre` varchar(32) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `categorie`
@@ -39,7 +33,7 @@ INSERT INTO `categorie` (`id`, `titre`) VALUES
 (1, 'armes de poing'),
 (2, 'armes blanches'),
 (3, 'armes lourdes'),
-(4, 'armes d\'assault');
+(4, 'armes d''assault');
 
 -- --------------------------------------------------------
 
@@ -50,18 +44,20 @@ INSERT INTO `categorie` (`id`, `titre`) VALUES
 CREATE TABLE `client` (
   `id` int(11) NOT NULL,
   `login` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `mdp` varchar(8) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `mdp` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `role` varchar(16) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `client`
 --
 
-INSERT INTO `client` (`id`, `login`, `mdp`) VALUES
-(1, 'Trump', 'donald'),
-(2, 'Florence', 'juji'),
-(3, 'Antoine', 'panzer'),
-(4, 'Wars', 'star');
+INSERT INTO `client` (`id`, `login`, `mdp`, `role`) VALUES
+(1, 'Trump', 'donald', 'ROLE_USER'),
+(2, 'Florence', 'juji', 'ROLE_USER'),
+(3, 'Antoine', 'panzer', 'ROLE_USER'),
+(4, 'Wars', 'star', 'ROLE_USER'),
+(11, 'test123456', 'azeaz', 'ROLE_USER');
 
 -- --------------------------------------------------------
 
@@ -75,7 +71,7 @@ CREATE TABLE `commande` (
   `dateheureCreation` datetime NOT NULL,
   `etat` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `prixTotal` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `commande`
@@ -100,7 +96,7 @@ CREATE TABLE `produit` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `prix` double NOT NULL,
   `stock` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `produit`
@@ -230,22 +226,22 @@ ALTER TABLE `produit_commande`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- Contraintes pour les tables exportées
 --
@@ -269,7 +265,3 @@ ALTER TABLE `produit_categorie`
 ALTER TABLE `produit_commande`
   ADD CONSTRAINT `FK_47F5946E82EA2E54` FOREIGN KEY (`commande_id`) REFERENCES `commande` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_47F5946EF347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`) ON DELETE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
