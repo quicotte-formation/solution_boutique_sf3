@@ -2,10 +2,13 @@
 # http://symfony.com/doc/current/security.html
 security:
 
+#   Mode de cryptage des mots-de-passe
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
         
         AppBundle\Entity\Client: plaintext
+
+#   Définition des utilisateurs et de leurs rôles
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -23,6 +26,7 @@ security:
 #                            password: admin
 #                            roles: 'ROLE_ADMIN'
                 
+#   Règles 
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
