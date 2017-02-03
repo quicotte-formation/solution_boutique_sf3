@@ -4,7 +4,7 @@ security:
 
 #   Mode de cryptage des mots-de-passe
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+#        Symfony\Component\Security\Core\User\User: plaintext
         
         AppBundle\Entity\Client: plaintext
 
@@ -16,18 +16,21 @@ security:
             entity:
                 class: AppBundle:Client
                 property: login
-#        in_memory:
-#            memory: 
-#                users:
-#                    tom:
-#                            password: tom
-#                            roles: 'ROLE_USER'
-#                    admin:
-#                            password: admin
-#                            roles: 'ROLE_ADMIN'
+        in_memory:
+            memory: 
+                users:
+                    tom:
+                            password: tom
+                            roles: 'ROLE_USER'
+                    admin:
+                            password: admin
+                            roles: 'ROLE_ADMIN'
+               
+#    Définition de la hiérarchie des rôles ( optionnel )
+    role_hierarchy:
+        ROLE_ADMIN:     ROLE_EXPEDITOR, ROLE_USER
                 
-#   Règles 
-
+#   Type d'autentification 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -45,5 +48,6 @@ security:
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
-        - { path: ^adminSecu, roles: ROLE_ADMIN }
-        - { path: ^userSecu, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: (client*|commande*|produit|categorie), roles: ROLE_ADMIN }
+        - { path: adminSecu*, roles: ROLE_ADMIN }
+        - { path: userSecu*, roles: [ROLE_USER, ROLE_ADMIN] }

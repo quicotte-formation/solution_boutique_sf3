@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 01 Février 2017 à 10:47
+-- Généré le :  Ven 03 Février 2017 à 07:17
 -- Version du serveur :  5.5.42
 -- Version de PHP :  7.0.0
 
@@ -46,7 +46,7 @@ CREATE TABLE `client` (
   `login` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `mdp` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(16) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `client`
@@ -57,7 +57,9 @@ INSERT INTO `client` (`id`, `login`, `mdp`, `role`) VALUES
 (2, 'Florence', 'juji', 'ROLE_USER'),
 (3, 'Antoine', 'panzer', 'ROLE_USER'),
 (4, 'Wars', 'star', 'ROLE_USER'),
-(11, 'test123456', 'azeaz', 'ROLE_USER');
+(11, 'test123456', 'azeaz', 'ROLE_USER'),
+(12, 'admin', 'admin', 'ROLE_ADMIN'),
+(13, 'exped', 'exped', 'ROLE_EXPEDITOR');
 
 -- --------------------------------------------------------
 
@@ -231,7 +233,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
